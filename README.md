@@ -1,3 +1,35 @@
-# scrabble_scorer
-A is worth 1B is worth 3
-C is worth 3D is worth 2E is worth 1F is worth 4G is worth 2H is worth 4I is worth 1J is worth 8K is worth 5L is worth 1M is worth 3N is worth 1O is worth 1P is worth 3Q is worth 10R is worth 1S is worth 1T is worth 1U is worth 1V is worth 4W is worth 4X is worth 8Y is worth 4Z is worth 10
+# ScrabbleScorer
+
+### Dependencies
+* Postgres
+* ruby
+
+### Database Config
+To make the applications work with DB, you have to configure
+credentials. You can do it in DB config file.
+DB config is in `config/database.yml`, by default it use `development`
+enviropment.
+
+### Prepare to run
+* bundle install
+* bundle exec rake db:create
+* bundle exec rake db:migrate
+* bundle exec rake db:load
+
+### Run server
+bundle exec bin/server -o 0.0.0.0 -p 3000
+
+
+## Usage
+Example request/response from the terminal
+```bash
+> curl -X GET 'http://localhost:3000/score_word/test'
+{"word":"test","valid":true,"score":4}
+```
+
+## Tests
+### Prepare
+* RACK_ENV=test bundle exec rake db:create
+* RACK_ENV=test bundle exec rake db:migrate
+### Run tests
+bundle exec rake test
