@@ -6,6 +6,7 @@ GEM
     parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
+    puma (3.8.2)
     rack (2.0.1)
     rainbow (2.2.1)
     rubocop (0.48.1)
@@ -22,6 +23,7 @@ PLATFORMS
 
 DEPENDENCIES
   minitest (~> 5.10.1)
+  puma
   rack (~> 2.0.1)
   rubocop
 
