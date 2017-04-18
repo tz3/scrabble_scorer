@@ -1,20 +1,21 @@
 # frozen_string_literal: true
 
-require_relative '../lib/scrabble_scorer_core'
+require_relative '../lib/scrabble_scorer'
 
 namespace :db do
   desc 'Migrate database version'
-  task :create_words do
-    Connection.connection.create_table :words do
+  task :migrate do
+    ScrabbleScorer::Connection.connection.create_table :words do
       primary_key :id
       String :word
     end
-    Connection.close
-    puts 'Dictionary table created'
+    ScrabbleScorer::Connection.connection.run('CREATE UNIQUE INDEX index_words_on_word ON words (word);')
+    ScrabbleScorer::Connection.close
+    puts 'Words table created'
   end
 
   desc 'Setup database migrate'
   task :setup do
-    Rake::Task['db:create_words'].invoke
+    Rake::Task['db:migrate'].invoke
   end
 end

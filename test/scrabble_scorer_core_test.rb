@@ -1,11 +1,11 @@
 require 'rack'
-require 'scrabble_scorer_core'
+require 'scrabble_scorer'
 require 'minitest/autorun'
 require 'json'
 ENV['RACK_ENV'] = 'test'
 
-describe ScrabbleScorerCore do
-  subject { Rack::MockRequest.new(ScrabbleScorerCore) }
+describe ScrabbleScorer::Core do
+  subject { Rack::MockRequest.new(ScrabbleScorer::Core) }
 
   describe 'routes' do
     describe 'return proper value' do
@@ -29,7 +29,7 @@ describe ScrabbleScorerCore do
 
   describe 'score_word' do
     before do
-      @d1 = Word.create('hello')
+      @d1 = ScrabbleScorer::Word.create('hello')
     end
 
     after do
@@ -52,7 +52,7 @@ describe ScrabbleScorerCore do
 
   describe 'database' do
     before do
-      @d1 = Word.create('hello')
+      @d1 = ScrabbleScorer::Word.create('hello')
     end
 
     after do
@@ -60,7 +60,7 @@ describe ScrabbleScorerCore do
     end
 
     it 'exists in database' do
-      Word.exists?('hello').must_equal(true)
+      ScrabbleScorer::Word.exists?('hello').must_equal(true)
     end
   end
 end

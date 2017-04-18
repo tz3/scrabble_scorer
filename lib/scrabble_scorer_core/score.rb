@@ -1,4 +1,5 @@
 require_relative 'word'
+module ScrabbleScorer
 class Score
   WEIGHT = {
     'A' => 1,
@@ -54,4 +55,5 @@ class Score
   def score
     @word.upcase.split('').map { |letter| WEIGHT[letter] }.reduce(&:+)
   end
+end
 end

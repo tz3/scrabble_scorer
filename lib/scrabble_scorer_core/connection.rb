@@ -1,6 +1,6 @@
 require 'sequel'
 require 'yaml'
-
+module ScrabbleScorer
 class Connection
   class << self
     def connection(database: true)
@@ -30,4 +30,5 @@ class Connection
       @config = YAML.safe_load(File.read('config/database.yml'))[ENV['RACK_ENV'] || 'development']
     end
   end
+end
 end

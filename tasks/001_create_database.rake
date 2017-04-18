@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require_relative '../lib/scrabble_scorer_core'
+require_relative '../lib/scrabble_scorer'
 
 namespace :db do
   desc 'Create database'
   task :create do
-    config = Connection.config
-    Connection.connection(database: false).run("CREATE DATABASE #{config['database']};")
-    Connection.close
+    config = ScrabbleScorer::Connection.config
+    ScrabbleScorer::Connection.connection(database: false).run("CREATE DATABASE #{config['database']};")
+    ScrabbleScorer::Connection.close
     puts 'Database created'
   end
   desc 'Setup database create'
