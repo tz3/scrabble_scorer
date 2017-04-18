@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'rack'
+ARGV.concat(['-Ilib', '-spuma'])
+Rack::Server.start
