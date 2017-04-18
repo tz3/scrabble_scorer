@@ -1,5 +1,5 @@
 require_relative 'base'
-require_relative '../score'
+require_relative '../score_service'
 require 'json'
 module ScrabbleScorer
   module Routes
@@ -13,7 +13,7 @@ module ScrabbleScorer
           pattern = /\w+/
           return bad_request if params.size != 1 || pattern !~ params.first
 
-          Score.new(params.first).call.to_json
+          ScrabbleScorer::ScoreService.new(params.first).call.to_json
         end
 
         def bad_request
