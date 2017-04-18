@@ -1,5 +1,5 @@
 # ScrabbleScorer
-
+[![CircleCI](https://circleci.com/gh/tz3/scrabble_scorer.svg?style=shield)](https://circleci.com/gh/tz3/scrabble_scorer)
 ### Dependencies
 * Postgres
 * ruby
