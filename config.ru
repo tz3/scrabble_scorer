@@ -1,3 +1,3 @@
 require 'scrabble_scorer'
 use Rack::Reloader
-run ScrabbleScorer::Core
+run ScrabbleScorer::ScrabbleScorer

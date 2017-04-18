@@ -2,11 +2,11 @@ module ScrabbleScorer
   module Routes
     class Base
       class << self
-        def dispatcher(method, request, params)
+        def dispatcher(method, request, param)
           if request.get?
-            send(method, request, params)
+            send(method, request, param)
           else
-            not_found(request, params)
+            not_found(request, param)
           end
         end
 

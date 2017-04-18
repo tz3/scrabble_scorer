@@ -5,15 +5,14 @@ module ScrabbleScorer
   module Routes
     class Api < Routes::Base
       class << self
-        def root(_request, _params)
+        def root(_request, _param)
           'root'
         end
 
-        def score_word(_request, params)
-          pattern = /\w+/
-          return bad_request if params.size != 1 || pattern !~ params.first
-
-          ScrabbleScorer::ScoreService.new(params.first).call.to_json
+        def score_word(_request, param)
+          pattern = /^[a-zA-Z]+$/
+          return bad_request unless pattern.match(param)
+          ScoreService.new(param).call.to_json
         end
 
         def bad_request

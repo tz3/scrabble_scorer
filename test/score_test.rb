@@ -11,11 +11,11 @@ describe ScrabbleScorer::ScoreService do
   end
   describe 'database filled' do
     before do
-      @d1 = ScrabbleScorer::Word.create('hello')
+      @word = ScrabbleScorer::Word.create('hello')
     end
 
     after do
-      @d1.destroy
+      @word.destroy
     end
     subject { ScrabbleScorer::ScoreService.new('hello').call }
     it 'valid' do
