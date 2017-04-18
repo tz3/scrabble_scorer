@@ -2,6 +2,7 @@ require 'rack'
 require 'scrabble_scorer_core'
 require 'minitest/autorun'
 require 'json'
+ENV['RACK_ENV'] = 'test'
 
 describe ScrabbleScorerCore do
   subject { Rack::MockRequest.new(ScrabbleScorerCore) }
@@ -23,15 +24,43 @@ describe ScrabbleScorerCore do
       it 'score_word' do
         subject.get('/score_word/test').status.must_equal(200)
       end
+    end
+  end
 
-      it 'score_word response' do
-        expected_value = { word: 'test', valid: false, score: 4 }.to_json
-        subject.get('/score_word/test').body.must_equal(expected_value)
-      end
+  describe 'score_word' do
+    before do
+      @d1 = Word.create('hello')
+    end
 
-      it 'score_word bad request' do
-        subject.get('/score_word/fdsafdsaf/213').status.must_equal(502)
-      end
+    after do
+      @d1.destroy
+    end
+    it 'score_word response without words' do
+      expected_value = { word: 'test', valid: false }.to_json
+      subject.get('/score_word/test').body.must_equal(expected_value)
+    end
+
+    it 'score_word response' do
+      expected_value = { word: 'hello', valid: true, score: 8 }.to_json
+      subject.get('/score_word/hello').body.must_equal(expected_value)
+    end
+
+    it 'score_word bad request' do
+      subject.get('/score_word/fdsafdsaf/213').status.must_equal(502)
+    end
+  end
+
+  describe 'database' do
+    before do
+      @d1 = Word.create('hello')
+    end
+
+    after do
+      @d1.destroy
+    end
+
+    it 'exists in database' do
+      Word.exists?('hello').must_equal(true)
     end
   end
 end

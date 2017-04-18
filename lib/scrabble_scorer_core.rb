@@ -1,4 +1,7 @@
 require_relative 'scrabble_scorer_core/routes/api'
+require_relative 'scrabble_scorer_core/connection'
+require_relative 'scrabble_scorer_core/word'
+
 class ScrabbleScorerCore
   def self.call(env)
     scrabbleCore = new(env)

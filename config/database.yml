@@ -1,0 +1,23 @@
+development:
+  adapter: postgres
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  database: scrabble_scorer_core_development
+
+test:
+  adapter: postgres
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+  database: scrabble_scorer_core_test
+
+production:
+  adapter: postgres
+  username: ENV['DB_USERNAME']
+  password: ENV['DB_PASS']
+  host: ENV['DB_HOST']
+  port: 5432
+  database: ENV['DB_DATABASE']

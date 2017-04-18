@@ -1,3 +1,4 @@
+require_relative 'word'
 class Score
   WEIGHT = {
     'A' => 1,
@@ -37,7 +38,7 @@ class Score
   end
 
   def valid?
-    false
+    Word.exists?(@word)
   end
 
   private
@@ -47,7 +48,7 @@ class Score
   end
 
   def failure
-    { word: @word, valid: false, score: score }
+    { word: @word, valid: false }
   end
 
   def score
