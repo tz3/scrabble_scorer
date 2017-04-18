@@ -1,5 +1,6 @@
 # ScrabbleScorer
 [![CircleCI](https://circleci.com/gh/tz3/scrabble_scorer.svg?style=shield)](https://circleci.com/gh/tz3/scrabble_scorer)
+[![Coverage Status](https://coveralls.io/repos/github/tz3/scrabble_scorer/badge.svg?branch=master)](https://coveralls.io/github/tz3/scrabble_scorer?branch=master)
 ### Dependencies
 * Postgres
 * ruby

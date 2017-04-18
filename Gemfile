@@ -12,4 +12,5 @@ group :development do
 end
 group :test do
   gem 'minitest', '~> 5.10.1'
+  gem 'coveralls', require: false
 end
