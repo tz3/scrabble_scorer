@@ -3,17 +3,11 @@ require 'yaml'
 module ScrabbleScorer
   class Connection
     class << self
-      def connection(database: true)
-        return common_connection_url unless database
-        @connection ||= Sequel.connect(connection_url)
-      end
-
-      def common_connection_url
-        @connection ||= Sequel.connect("#{config['adapter']}://#{config['username']}:#{config['password']}@#{config['host']}:#{config['port']}/")
-      end
-
-      def connection_url
-        "#{config['adapter']}://#{config['username']}:#{config['password']}@#{config['host']}:#{config['port']}/#{config['database']}"
+      def connection
+        @connection ||= Sequel.connect(
+            "#{config['adapter']}://#{config['database']}",
+            {max_connections: config['pool'], timeout: config['timeout']}
+        )
       end
 
       def close

@@ -1,3 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea/
 *.log
+*.sqlite3
+coverage/
+.DS_Store

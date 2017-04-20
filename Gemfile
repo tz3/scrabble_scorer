@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 ruby '2.4.1'
-gem 'pg'
+gem 'sqlite3'
 gem 'puma', '~> 3.8.2'
 gem 'rack', '~> 2.0.1'
 gem 'rake', '~> 12.0.0'

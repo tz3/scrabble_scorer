@@ -2,7 +2,6 @@
 [![CircleCI](https://circleci.com/gh/tz3/scrabble_scorer.svg?style=shield)](https://circleci.com/gh/tz3/scrabble_scorer)
 [![Coverage Status](https://coveralls.io/repos/github/tz3/scrabble_scorer/badge.svg?branch=master)](https://coveralls.io/github/tz3/scrabble_scorer?branch=master)
 ### Dependencies
-* Postgres
 * ruby
 
 ### Database Config
@@ -13,7 +12,6 @@ enviropment.
 
 ### Prepare to run
 * bundle install
-* bundle exec rake db:create
 * bundle exec rake db:migrate
 * bundle exec rake db:load
 
@@ -30,7 +28,6 @@ Example request/response from the terminal
 
 ## Tests
 ### Prepare
-* RACK_ENV=test bundle exec rake db:create
 * RACK_ENV=test bundle exec rake db:migrate
 ### Run tests
 bundle exec rake test

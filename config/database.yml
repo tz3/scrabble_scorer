@@ -1,23 +1,17 @@
 development:
-  adapter: postgres
-  username: postgres
-  password: postgres
-  host: localhost
-  port: 5432
-  database: scrabble_scorer_core_development
+  adapter: sqlite
+  pool: 5
+  timeout: 3000
+  database: data/scrabble_scorer_core_development.sqlite3
 
 test:
-  adapter: postgres
-  username: postgres
-  password: postgres
-  host: localhost
-  port: 5432
-  database: scrabble_scorer_core_test
+  adapter: sqlite
+  pool: 5
+  timeout: 3000
+  database: data/scrabble_scorer_core_test.sqlite3
 
 production:
-  adapter: postgres
-  username: ENV['DB_USERNAME']
-  password: ENV['DB_PASS']
-  host: ENV['DB_HOST']
-  port: 5432
-  database: ENV['DB_DATABASE']
+  adapter: sqlite
+  pool: 5
+  timeout: 3000
+  database: data/scrabble_scorer_core_production.sqlite3
