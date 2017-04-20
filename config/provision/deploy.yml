@@ -40,12 +40,11 @@
       command: bundle exec rake db:load
       args:
         chdir: "{{ deploy_to }}"
-
         
-    - name: stop foreman
-      command:  cat /tmp/puma.pid | xargs kill
+    - name: stop server
+      shell: "cat /tmp/puma.pid  | xargs kill"
         
-    - shell: "foreman start"
+    - shell: "bundle exec bin/server -p 3000 -P /tmp/puma.pid -o 0.0.0.0 -D"
       args:
         chdir: "{{ deploy_to }}"
       sudo: yes

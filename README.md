@@ -34,3 +34,29 @@ Example request/response from the terminal
 * RACK_ENV=test bundle exec rake db:migrate
 ### Run tests
 bundle exec rake test
+
+## Try
+
+Service was deployed on digital ocean, so here you can try it.
+http://95.85.42.243:3000/score_word/title
+
+## Deployment
+
+### Dependencies 
+* Ansible
+* python
+
+### Get Started
+Further actions are executed from the folder config/provision folder
+
+Firstly run setup playbook for configuring your instance. For example,
+```
+ansible-playbook -i hosts --private-key=~/.ssh/id_rsa setup.yml
+```
+and finally, run the deploy playbook for deploy.
+
+```
+ansible-playbook -i hosts --private-key=~/.ssh/id_rsa deploy.yml
+```
+
+

@@ -35,11 +35,5 @@
       gem:
         name: bundler
 
-    - name: install foreman
-      sudo: yes
-      gem:
-        name: foreman
-
-
 
 
