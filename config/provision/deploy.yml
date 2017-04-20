@@ -1,0 +1,52 @@
+---
+- hosts: webserver
+  user: ubuntu
+  gather_facts: true
+  vars:
+    ansible_sudo_pass: "ubuntu"
+    user: ubuntu
+    app_name: scrabble_scorer
+    home_directory: "/home/{{ user }}"
+    deploy_to: "{{ home_directory }}/{{app_name}}"
+    rails_env: production
+    repo: "git@github.com:tz3/scrabble_scorer.git"
+  tasks:
+  
+    - name: create or update the bare Git repository
+      git:
+        repo: "{{ repo }}"
+        dest: "{{ deploy_to }}"
+        update: yes
+        clone: yes
+        force: yes
+        key_file: "{{ key_file | default() }}"
+
+    - name: execute bundler
+      command: "bundle install"
+      args:
+        chdir: "{{ deploy_to }}"
+      
+    - name: db create
+      command: bundle exec rake db:create
+      args:
+        chdir: "{{ deploy_to }}"
+
+    - name: db:migrate
+      command: bundle exec rake db:migrate
+      args:
+        chdir: "{{ deploy_to }}"
+
+    - name: db:load
+      command: bundle exec rake db:load
+      args:
+        chdir: "{{ deploy_to }}"
+
+        
+    - name: stop foreman
+      command:  cat /tmp/puma.pid | xargs kill
+        
+    - shell: "foreman start"
+      args:
+        chdir: "{{ deploy_to }}"
+      sudo: yes
+

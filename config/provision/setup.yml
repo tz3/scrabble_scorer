@@ -1,0 +1,45 @@
+---
+- hosts: webserver
+  user: ubuntu
+  gather_facts: true
+  vars:
+    ansible_sudo_pass: "ubuntu"
+    user: ubuntu
+    app_name: scrabble_scorer
+    home_directory: "/home/{{ user }}"
+    deploy_to: "{{ home_directory }}/{{app_name}}"
+    repo: "git@github.com:tz3/scrabble_scorer.git"
+    branch: master
+  tasks:
+    - name: install
+      command: apt-add-repository ppa:brightbox/ruby-ng
+      sudo: yes
+
+    - name: update repository
+      command: apt-get update
+      sudo: yes
+
+    - name: Install list of packages
+      sudo: yes
+      action: apt pkg={{item}} state=installed
+      with_items:
+        - postgresql
+        - git
+        - curl
+        - ruby2.4
+        - libpq-dev
+        - build-essential
+
+    - name: install bundler 
+      sudo: yes
+      gem:
+        name: bundler
+
+    - name: install foreman
+      sudo: yes
+      gem:
+        name: foreman
+
+
+
+
